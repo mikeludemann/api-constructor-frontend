@@ -1,0 +1,31 @@
+{
+  "name": "api-constructor-frontend",
+  "version": "1.0.0",
+  "description": "An API constructor for the frontend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikeludemann/api-constructor-frontend.git"
+  },
+  "keywords": [
+    "API",
+    "Services",
+    "Constructor",
+    "Frontend",
+    "OAuth 2.0"
+  ],
+  "author": "Mike Ludemann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mikeludemann/api-constructor-frontend/issues"
+  },
+  "homepage": "https://github.com/mikeludemann/api-constructor-frontend#readme",
+  "dependencies": {
+    "axios": "^0.23.0",
+    "dotenv": "^10.0.0",
+    "jwt-decode": "^3.1.2"
+  }
+}

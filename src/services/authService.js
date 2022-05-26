@@ -6,6 +6,11 @@ const authBody = {
   client_id: 'ABC...XYZ' // OAuth Client ID (Replace 'ABC...XYZ')
 };
 
+const authBodyRefreshToken = {
+  grant_type: 'refresh_token',
+  client_id: 'ABC...XYZ' // OAuth Client ID (Replace 'ABC...XYZ')
+};
+
 const authService = {
   login(credentials) {
     const body = Object
@@ -34,7 +39,23 @@ const authService = {
           reject(err);
         });
     });
-  }
+  },
+  refreshToken(userId) {
+    const body = Object
+      .entries({ ...authBodyRefreshToken, refresh_token: localStorage.getItem(process.env.REACT_APP_REFRESHTOKEN_NAME)})
+      .map((arr) => arr.join('='))
+      .join('&');
+    return new Promise((resolve, reject) => {
+      http.post(`/oauth2/${userId}/token`, body)
+        .then((res) => {
+          resolve(res);
+          localStorage.setItem( process.env.REACT_APP_REFRESHTOKEN_NAME, res.data.refresh_token)
+          localStorage.setItem( process.env.REACT_APP_TOKEN_NAME, res.data.access_token)
+        }, (err) => {
+          reject(err);
+        });
+    });
+  },
 }
 
 export default authService
